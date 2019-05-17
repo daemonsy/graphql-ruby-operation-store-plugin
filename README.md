@@ -4,7 +4,6 @@
 
 A webpack plugin to help sync persisted queries during webpack's build lifecycle, so everytime you edit a `.graphql` file in the app, it syncs the latest queries to your development server.
 
-
 ## What this does
 
 ```sh
@@ -23,19 +22,27 @@ const VirtualModulesPlugin = require('virtual-modules-plugin');
 const virtualModules = new VirtualModulesPlugin();
 
 plugins = [
-  virtualModules, // Must be a better way of doing this
+  virtualModules, // FIXME: Must be a better way of doing this
   new OperationStorePlugin(virtualModules, graphqlRubySyncOptions)
 ]
 ```
 
-## Why do it this way? Paint points using Persisted Queries
+During the build process, it generates a virtual module that can be included.
 
+```javascript
+import OperationStore from 'graphql-ruby-operation-store';
+```
+
+Whenever a `.graphql` file changes, it will sync the queries again and generate a new operation store module. Since this avoids writing the module to disk, it avoids the complications triggering infinite loops and telling JS loaders to avoid linting or transpiling the file.
+
+It also generates a JSON file with all the operations and digests in the project root, so you can check them in for reference.
+
+## Why do it this way? Paint points using Persisted Queries
 For `graphql-pro` users who are using persisted queries with a frontend built by Webpack, the typical setup is to allow string queries in development and then sync the queries to the production backend in some build step.
 
 There are a couple of issues with this approach.
 
 ### A orchestration step is required in CI?
-
 The `operation-store.js` has to be consumed by the webpack build process. Since these queries are to be synced with production, it probably has to be done in a process that can safeguard production secrets, such as a CI process right before deploy (you probably don't want to sync to production on every build).
 
 If you combine this with running string queries in development, this means that the **last pre-production CI run might be the first time** invoking GraphQL Pro's sync script.

@@ -10,7 +10,7 @@ class OperationStorePlugin {
     compiler.hooks.compilation.tap('OperationStorePlugin:sync', compilation => {
       const operationStore = generateClient(this.options);
       sync(this.options);
-      this.virtualModules.writeModule('node_modules/graphql-operation-store.js', operationStore);
+      this.virtualModules.writeModule('node_modules/graphql-ruby-operation-store.js', operationStore);
     });
   }
 }

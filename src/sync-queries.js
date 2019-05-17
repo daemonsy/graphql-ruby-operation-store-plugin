@@ -1,11 +1,10 @@
-const CLIENTS = require('../clients.json');
 const { sync, generateClient } = require('graphql-ruby-client');
-const { resolve } = require('path');
 
-const defaultOutfile = resolve(process.cwd(), 'web', 'operation-store-client.json');
+
+const defaultOutfile = process.env.GRAPHQL_OUTFILE_PATH;
 const defaultAddTypename = process.env.GRAPHQL_ADD_TYPE_NAME || true; // For Apollo client
-const defaultPath = process.env.GRAPHQL_PATH || resolve(process.cwd(), 'web', 'app', '**', '*.graphql');
-const defaultUrl = `${process.env.GRAPHQL_URL || process.env.API_HOST}/v5/graphql/persisted_queries`;
+const defaultPath = process.env.GRAPHQL_PATH;
+const defaultUrl = process.env.GRAPHQL_URL;
 
 const defaultClientSecret = process.env.GRAPHQL_SECRET;
 
