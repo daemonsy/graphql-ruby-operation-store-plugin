@@ -1,0 +1,12 @@
+{
+  "name": "graphql-ruby-operation-store-plugin",
+  "version": "0.0.1",
+  "description": "Webpack plugin to automatically sync persisted queries",
+  "main": "index.js",
+  "author": "Damon Aw <daemonsy@gmail.com>",
+  "license": "NONE",
+  "private": true,
+  "dependencies": {
+    "graphql-ruby-client": "^1.6.4"
+  }
+}
