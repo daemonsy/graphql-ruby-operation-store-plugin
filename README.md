@@ -16,8 +16,8 @@ yarn add webpack-virtual-modules --dev
 
 ```javascript
 // In your Webpack configuration
-const OperationStorePlugin = require('operation-store-plugin');
-const VirtualModulesPlugin = require('virtual-modules-plugin');
+const OperationStorePlugin = require('graphql-ruby-operation-store-plugin');
+const VirtualModulesPlugin = require('webpack-virtual-modules');
 
 const virtualModules = new VirtualModulesPlugin();
 
