@@ -4,9 +4,9 @@
   "description": "Webpack plugin to automatically sync persisted queries",
   "main": "index.js",
   "author": "Damon Aw <daemonsy@gmail.com>",
-  "license": "NONE",
-  "private": true,
+  "license": "MIT",
   "dependencies": {
-    "graphql-ruby-client": "^1.6.4"
+    "graphql-ruby-client": "^1.6.4",
+    "webpack-virtual-modules": "^0.1.10"
   }
 }
